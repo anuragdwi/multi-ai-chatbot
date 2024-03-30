@@ -1,0 +1,93 @@
+body {
+  font-family: sans-serif;
+  background-color: #f0f0f0;
+}
+.container {
+  max-width: 70vw;
+  margin: 50px auto;
+  text-align: center;
+  min-width: 300px;
+}
+.message {
+  margin-bottom: 10px;
+}
+.user-message {
+  color: #007bff;
+}
+.bot-message {
+  color: #28a745;
+}
+#message-input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+#conversation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#conversation .box {
+  height: 60vh;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+#send-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+#conversation .box .title {
+  display: flex;
+  align-items: center;
+
+  justify-content: center;
+  gap: 6px;
+}
+#conversation .box .title .logo {
+  height: 30px;
+  width: 30px;
+}
+#send-btn:hover {
+  background-color: #0056b3;
+}
+.box {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+  background-color: #fff;
+}
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.logo {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+.text {
+  margin-bottom: 10px;
+}
+.copy-btn {
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+.copy-btn:hover {
+  background-color: #0056b3;
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI-Pedia Multi Text-to-Text Generator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>AI-Pedia Multi Text-to-Text Generator</h1>
+      <div id="conversation">
+        <div class="box">
+          <div class="title">
+            <img
+              src="/assets/chatgpt-logo-png.png"
+              alt="ChatGPT Logo"
+              class="logo"
+            />
+            <h3>ChatGPT</h3>
+          </div>
+          <div class="text" id="text1"></div>
+          <button class="copy-btn" onclick="copyText('text1')">Copy</button>
+        </div>
+
+        <div class="box">
+          <div class="title">
+            <img
+              src="/assets/google-gemini-icon.png"
+              alt="Gemini Logo"
+              class="logo"
+            />
+            <h3>Gemini</h3>
+          </div>
+
+          <div class="text" id="text2">This is the text in Box 2.</div>
+          <button class="copy-btn" onclick="copyText('text2')">Copy</button>
+        </div>
+      </div>
+      <input
+        type="text"
+        id="message-input"
+        placeholder="Type your message..."
+      />
+      <button id="send-btn">Send</button>
+    </div>
+
+    <div id="query-result" class="container" style="display: none">
+      <h2>User Query</h2>
+      <div id="user-query"></div>
+      <h2>AI Response</h2>
+      <div id="ai-response"></div>
+    </div>
+    <script src="/script.js"></script>
+    <!-- <script src="/gemini.js"></script> -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+    </script>
+
+    <script type="module">
+      import { GoogleGenerativeAI } from "@google/generative-ai";
+      $(document).ready(function () {
+        const API_KEY = "AIzaSyAajnAeMJ9H6gBn5yMVk0ZjU8zyCQeGtSA";
+
+        const genAI = new GoogleGenerativeAI(API_KEY);
+
+        async function run() {
+          const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
+          const userInput = $("#message-input").val().trim();
+
+          if (userInput === "") {
+            return; // Do not proceed if the input is empty
+          }
+
+          const result = await model.generateContent(userInput);
+
+          const response = await result.response;
+
+          const text = response.text();
+          document.getElementById("text2").innerText = text;
+          console.log(text);
+        }
+
+        $("#send-btn").click(run);
+
+        $("#message-input").keypress(function (event) {
+          if (event.key === "Enter") {
+            run();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
